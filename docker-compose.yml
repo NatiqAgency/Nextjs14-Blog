@@ -1,0 +1,59 @@
+version: "3.8"
+
+name: blog
+
+services:
+  frontend:
+    build:
+      context: ./
+      dockerfile: ./docker/yarn/Dockerfile
+    restart: unless-stopped
+    volumes:
+      - .:/app
+    command: yarn dev
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: ${DATABASE_URL}
+    networks:
+      - proxy
+    labels:
+      traefik.enable: true
+      traefik.http.routers.blog-next.rule: Host(`blog.dev.localhost`)
+      traefik.http.routers.blog-next.entrypoints: https
+      traefik.http.services.blog-next.loadbalancer.server.port: 3000
+
+  postgres:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=blog
+
+  prisma-studio:
+    build:
+      context: ./
+      dockerfile: ./docker/studio/Dockerfile
+    restart: unless-stopped
+    volumes:
+      - ./prisma/schema.prisma:/schema.prisma:ro
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+    networks:
+      - proxy
+    labels:
+      traefik.enable: true
+      traefik.http.routers.blog-studio.rule: Host(`blog.db.localhost`)
+      traefik.http.routers.blog-studio.entrypoints: https
+      traefik.http.services.blog-studio.loadbalancer.server.port: 5555
+
+networks:
+  proxy:
+    external: true
+
+volumes:
+  postgres:
