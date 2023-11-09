@@ -4,10 +4,9 @@ name: blog
 
 services:
   frontend:
-    build:
-      context: ./
-      dockerfile: ./docker/yarn/Dockerfile
+    image: node:20
     restart: unless-stopped
+    working_dir: /app
     volumes:
       - .:/app
     command: yarn dev

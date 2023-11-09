@@ -3,12 +3,18 @@
 @tailwind utilities;
 
 :root {
-    /* Your default theme */
-    --background: white;
-    --foreground: black;
+    --secondary-50: #F6F6F7;
+    --secondary-100: #E8E8EA;
+    --secondary-200: #DCDDDF;
+    --secondary-300: #BABABF;
+    --secondary-400: #97989F;
+    --secondary-500: #696A75;
+    --secondary-600: #3B3C4A;
+    --secondary-700: #242535;
+    --secondary-800: #181A2A;
+    --secondary-900: #141624;
+    --primary: #4B6BFB;
+    --white: white;
 }
 
-[data-theme='dark'] {
-    --background: black;
-    --foreground: white;
-}
+/* [data-theme='dark'] {} */
