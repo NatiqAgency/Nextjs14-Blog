@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Work_Sans } from 'next/font/google'
 import '@/styles/global.css'
 import Container from '@/components/Container'
+import { ThemeProvider } from '@/providers/ThemeProvider'
 
 const work = Work_Sans({ subsets: ['latin'] })
 
@@ -15,10 +16,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={work.className}>
-        <Container>
-          <Header />
-          {children}
-        </Container>
+        <ThemeProvider>
+          <Container>
+            <Header />
+            {children}
+          </Container>
+        </ThemeProvider>
       </body>
     </html>
   )
