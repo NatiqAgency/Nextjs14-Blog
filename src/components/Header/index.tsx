@@ -14,10 +14,11 @@ export default function Header() {
                         width={158}
                         height={36}
                         alt="logo"
+                        className="text-secondary-600 dark:text-white"
                     />
                 </Link>
             </div>
-            <ul className="flex-1 flex flex-row justify-center gap-10">
+            <ul className="flex-1 flex flex-row justify-center gap-10 text-secondary-600 dark:text-white">
                 <li>
                     <Link
                         href={'/'}
@@ -41,7 +42,7 @@ export default function Header() {
                 </li>
             </ul>
             <input
-                className="p-2 pl-4 rounded-md bg-slate-200"
+                className="p-2 pl-4 rounded-md bg-secondary-100 placeholder:text-secondary-400"
                 type="text"
                 placeholder="Search"
             />

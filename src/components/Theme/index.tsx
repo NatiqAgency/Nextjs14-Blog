@@ -1,15 +1,30 @@
 'use client'
 
-import { useTheme } from 'next-themes'
+import { FaMoon, FaSun } from 'react-icons/fa';
+import { useTheme } from 'next-themes';
 
 export const ThemeChanger = () => {
     const { theme, setTheme } = useTheme()
 
     return (
-        <div>
-            The current theme is: {theme}
-            <button onClick={() => setTheme('light')}>Light Mode</button>
-            <button onClick={() => setTheme('dark')}>Dark Mode</button>
-        </div>
-    )
-}
+        <div className="pl-3 text-secondary-600">
+            {
+                theme === 'light' ? (
+                    <button
+                        onClick={() => setTheme('dark')}
+                        className={'p-2 text-title rounded-full'}
+                    >
+                        <FaMoon />
+                    </button >
+                ) : (
+                    <button
+                        onClick={() => setTheme('light')}
+                        className={'p-2 text-title rounded-full'}
+                    >
+                        <FaSun />
+                    </button>
+                )
+            }
+        </div >
+    );
+};
