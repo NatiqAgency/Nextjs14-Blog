@@ -10,7 +10,7 @@ export default function Footer() {
 
 	return (
 		<footer
-			className={`w-full bg-[#F6F6F7] px-80 flex justify-start items-start flex-col ${work.className} leading-6`}
+			className={`w-full bg-[#F6F6F7] sm:px-10 md:px-32 lg:px-40 xl:px-56 flex justify-start items-start flex-col ${work.className} leading-6`}
 		>
 			<div className="flex flex-row justify-between items-start py-16 w-full">
 				<div className="flex justify-start items-start flex-col max-w-[280px]">

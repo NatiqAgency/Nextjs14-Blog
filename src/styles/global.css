@@ -18,3 +18,75 @@
 }
 
 /* [data-theme='dark'] {} */
+
+
+/* Markdown Container */
+.markdown {
+    @apply text-secondary-800;
+}
+
+/* Headings */
+.markdown h1 {
+    @apply text-3xl font-bold my-4;
+}
+
+.markdown h2 {
+    @apply text-2xl font-bold my-3;
+}
+
+.markdown h3 {
+    @apply text-xl font-semibold my-2;
+}
+
+/* Paragraphs */
+.markdown p {
+    @apply my-2;
+}
+
+/* Links */
+.markdown a {
+    @apply text-primary hover:text-primary;
+}
+
+/* Lists */
+.markdown ul,
+.markdown ol {
+    @apply list-inside list-disc pl-5 my-2;
+}
+
+.markdown ol {
+    @apply list-decimal;
+}
+
+/* Blockquotes */
+.markdown blockquote {
+    @apply border-l-4 border-secondary-300 pl-4 italic my-4;
+}
+
+/* Code Blocks */
+.markdown pre {
+    @apply bg-secondary-100 p-2 rounded overflow-x-auto;
+}
+
+.markdown code {
+    @apply bg-secondary-100 rounded px-1;
+}
+
+/* Images */
+.markdown img {
+    @apply max-w-full h-auto my-4;
+}
+
+/* Tables */
+.markdown table {
+    @apply min-w-full my-4 border-collapse;
+}
+
+.markdown th,
+.markdown td {
+    @apply border border-secondary-300 px-4 py-2;
+}
+
+.markdown th {
+    @apply bg-secondary-200;
+}

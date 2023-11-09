@@ -110,25 +110,15 @@ export default function Home() {
 					fill
 				/>
 			</div>
-			<div
-				className="relative bg-white left-16 -top-44 flex flex-col items-start rounded-xl shadow-md p-10 w-[37rem]"
-			>
-				<div
-					className="bg-primary py-1 px-2 rounded-md mb-4"
-				>
+			<div className="relative bg-white left-16 -top-44 flex flex-col items-start rounded-xl shadow-md p-10 w-[37rem]">
+				<div className="bg-primary py-1 px-2 rounded-md mb-4">
 					Technology
 				</div>
-				<div
-					className="mb-6"
-				>
+				<div className="mb-6">
 					The Impact of Technology on the Workplace: How Technology is Changing
 				</div>
-				<div
-					className="flex flex-row items-center text-secondary-400"
-				>
-					<div
-						className="relative w-9 h-9 rounded-full overflow-hidden"
-					>
+				<div className="flex flex-row items-center text-secondary-400">
+					<div className="relative w-9 h-9 rounded-full overflow-hidden">
 						<Image
 							className="object-cover"
 							src={'/images/profile_pic.jpg'}
@@ -144,26 +134,16 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
-			<div
-				className="mb-8"
-			>
-				<div
-					className="text-2xl font-bold mb-8"
-				>
+			<div className="mb-8">
+				<div className="text-2xl font-bold mb-8">
 					Latest Post
 				</div>
-				<div
-					className="grid grid-cols-auto-fit gap-5 items-start"
-				>
+				<div className="grid grid-cols-auto-fit gap-5 items-start">
 					<MapArticles articles={articles} />
 				</div>
 			</div>
-			<div
-				className="mb-24 flex justify-center"
-			>
-				<button
-					className="py-3 px-5 text-secondary-500 border-2 border-secondary-500 rounded-md"
-				>
+			<div className="mb-24 flex justify-center">
+				<button className="py-3 px-5 text-secondary-500 border-2 border-secondary-500 rounded-md">
 					View All Post
 				</button>
 			</div>
