@@ -18,7 +18,7 @@ export default function Header() {
                     />
                 </Link>
             </div>
-            <ul className="flex-1 flex flex-row justify-center gap-10 text-secondary-600 dark:text-white">
+            <ul className="flex-1 flex flex-row justify-center gap-10 text-secondary-600 dark:text-white select-none">
                 <li>
                     <Link
                         href={'/'}
