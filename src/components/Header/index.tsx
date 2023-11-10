@@ -5,7 +5,7 @@ import { ThemeChanger } from "../Theme";
 export default function Header() {
     return (
         <nav className="flex flex-row justify-between items-center py-8">
-            <div>
+            <div className="mr-auto">
                 <Link
                     href={'/'}
                 >
@@ -18,22 +18,6 @@ export default function Header() {
                     />
                 </Link>
             </div>
-            <ul className="flex-1 flex flex-row justify-center gap-10 text-secondary-600 dark:text-white select-none">
-                <li>
-                    <Link
-                        href={'/'}
-                    >
-                        Home
-                    </Link>
-                </li>
-                <li>
-                    <Link
-                        href={'/contact'}
-                    >
-                        Contact
-                    </Link>
-                </li>
-            </ul>
             <input
                 className="p-2 pl-4 rounded-md bg-secondary-100 placeholder:text-secondary-400"
                 type="text"

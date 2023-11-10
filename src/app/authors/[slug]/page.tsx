@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
-import { MapArticles } from '@/components/Article/MapArticle';
+import { MapPosts } from '@/components/Post/MapPosts';
 
 type Props = {
 	params: {
@@ -31,109 +31,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function AuthorPage({ params }: Props) {
 
-	const articles = [
-		{
-			id: 1,
-			tag: "technology",
-			title: "The Impact of Technology on the Workplace: How Technology is Changing",
-			slug: "the_impact_of_technology_on_the_workplace_how_technology_is_changing",
-			createdAt: "August 20, 2022",
-			author: "Jason Francisco"
-		},
-		{
-			id: 2,
-			tag: "technology",
-			title: "The Impact of Technology on the Workplace: How Technology is Changing",
-			slug: "the_impact_of_technology_on_the_workplace_how_technology_is_changing",
-			createdAt: "August 20, 2022",
-			author: "Jason Francisco"
-		},
-		{
-			id: 3,
-			tag: "technology",
-			title: "The Impact of Technology on the Workplace: How Technology is Changing",
-			slug: "the_impact_of_technology_on_the_workplace_how_technology_is_changing",
-			createdAt: "August 20, 2022",
-			author: "Jason Francisco"
-		},
-		{
-			id: 4,
-			tag: "technology",
-			title: "The Impact of Technology on the Workplace: How Technology is Changing",
-			slug: "the_impact_of_technology_on_the_workplace_how_technology_is_changing",
-			createdAt: "August 20, 2022",
-			author: "Jason Francisco"
-		},
-		{
-			id: 5,
-			tag: "technology",
-			title: "The Impact of Technology on the Workplace: How Technology is Changing",
-			slug: "the_impact_of_technology_on_the_workplace_how_technology_is_changing",
-			createdAt: "August 20, 2022",
-			author: "Jason Francisco"
-		},
-		{
-			id: 6,
-			tag: "technology",
-			title: "The Impact of Technology on the Workplace: How Technology is Changing",
-			slug: "the_impact_of_technology_on_the_workplace_how_technology_is_changing",
-			createdAt: "August 20, 2022",
-			author: "Jason Francisco"
-		}, {
-			id: 7,
-			tag: "technology",
-			title: "The Impact of Technology on the Workplace: How Technology is Changing",
-			slug: "the_impact_of_technology_on_the_workplace_how_technology_is_changing",
-			createdAt: "August 20, 2022",
-			author: "Jason Francisco"
-		},
-		{
-			id: 8,
-			tag: "technology",
-			title: "The Impact of Technology on the Workplace: How Technology is Changing",
-			slug: "the_impact_of_technology_on_the_workplace_how_technology_is_changing",
-			createdAt: "August 20, 2022",
-			author: "Jason Francisco"
-		},
-		{
-			id: 9,
-			tag: "technology",
-			title: "The Impact of Technology on the Workplace: How Technology is Changing",
-			slug: "the_impact_of_technology_on_the_workplace_how_technology_is_changing",
-			createdAt: "August 20, 2022",
-			author: "Jason Francisco"
-		},
-		{
-			id: 10,
-			tag: "technology",
-			title: "The Impact of Technology on the Workplace: How Technology is Changing",
-			slug: "the_impact_of_technology_on_the_workplace_how_technology_is_changing",
-			createdAt: "August 20, 2022",
-			author: "Jason Francisco"
-		},
-		{
-			id: 11,
-			tag: "technology",
-			title: "The Impact of Technology on the Workplace: How Technology is Changing",
-			slug: "the_impact_of_technology_on_the_workplace_how_technology_is_changing",
-			createdAt: "August 20, 2022",
-			author: "Jason Francisco"
-		},
-		{
-			id: 12,
-			tag: "technology",
-			title: "The Impact of Technology on the Workplace: How Technology is Changing",
-			slug: "the_impact_of_technology_on_the_workplace_how_technology_is_changing",
-			createdAt: "August 20, 2022",
-			author: "Jason Francisco"
-		}
-	]
-
 	const author = await prisma.user.findFirst({ where: { slug: params.slug } })
-
 	if (!author) notFound()
 
 	const links = author.links as Links;
+
+	const posts = await prisma.post.findMany({ where: { author: { slug: params.slug } }, include: { author: true, tag: true } })
 
 	return (
 		<div>
@@ -165,6 +68,7 @@ export default async function AuthorPage({ params }: Props) {
 								<Link
 									className='block p-2 bg-secondary-500 rounded-md text-white'
 									href={links.facebook}
+									target='_blank'
 								>
 									<FaFacebook />
 								</Link>
@@ -174,6 +78,7 @@ export default async function AuthorPage({ params }: Props) {
 							<Link
 								className='block p-2 bg-secondary-500 rounded-md text-white'
 								href={links.twitter}
+								target='_blank'
 							>
 								<FaTwitter />
 							</Link>
@@ -182,6 +87,7 @@ export default async function AuthorPage({ params }: Props) {
 							<Link
 								className='block p-2 bg-secondary-500 rounded-md text-white'
 								href={links.instagram}
+								target='_blank'
 							>
 								<FaInstagram />
 							</Link>
@@ -190,6 +96,7 @@ export default async function AuthorPage({ params }: Props) {
 							<Link
 								className='block p-2 bg-secondary-500 rounded-md text-white'
 								href={links.youtube}
+								target='_blank'
 							>
 								<FaYoutube />
 							</Link>
@@ -202,7 +109,7 @@ export default async function AuthorPage({ params }: Props) {
 					Latest Post
 				</div>
 				<div className="grid grid-cols-auto-fit gap-5 items-start">
-					<MapArticles articles={articles} />
+					<MapPosts posts={posts} />
 				</div>
 			</div>
 		</div>

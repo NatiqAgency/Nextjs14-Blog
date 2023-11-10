@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 const work = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Footer() {
@@ -10,7 +11,7 @@ export default function Footer() {
 
 	return (
 		<footer
-			className={`w-full bg-[#F6F6F7] sm:px-10 md:px-32 lg:px-40 xl:px-56 flex justify-start items-start flex-col ${work.className} leading-6`}
+			className={`w-full bg-[#F6F6F7] sm:px-10 xl:px-56 2xl:px-96 flex justify-start items-start flex-col ${work.className} leading-6`}
 		>
 			<div className="flex flex-row justify-between items-start py-16 w-full">
 				<div className="flex justify-start items-start flex-col max-w-[280px]">
@@ -28,118 +29,6 @@ export default function Footer() {
 						<span className="font-bold text-[#181A2A]">Phone:</span>{" "}
 						880 123 456 789
 					</p>
-				</div>
-				<div className="flex justify-center items-start flex-row flex-grow">
-					<div className="px-10">
-						<h3 className="font-bold text-[#181A2A] text-lg">
-							Quick Link
-						</h3>
-						<ul className="flex flex-col justify-start items-start mt-6">
-							<li className="text-base text-[#3B3C4A] mb-2">
-								<a
-									href="#"
-									className="cursor-pointer hover:text-[#000000] transition-all hover:underline"
-								>
-									Home
-								</a>
-							</li>
-							<li className="text-base text-[#3B3C4A] mb-2">
-								<a
-									href="#"
-									className="cursor-pointer hover:text-[#000000] transition-all hover:underline"
-								>
-									About
-								</a>
-							</li>
-							<li className="text-base text-[#3B3C4A] mb-2">
-								<a
-									href="#"
-									className="cursor-pointer hover:text-[#000000] transition-all hover:underline"
-								>
-									Blog
-								</a>
-							</li>
-							<li className="text-base text-[#3B3C4A] mb-2">
-								<a
-									href="#"
-									className="cursor-pointer hover:text-[#000000] transition-all hover:underline"
-								>
-									Archived
-								</a>
-							</li>
-							<li className="text-base text-[#3B3C4A] mb-2">
-								<a
-									href="#"
-									className="cursor-pointer hover:text-[#000000] transition-all hover:underline"
-								>
-									Author
-								</a>
-							</li>
-							<li className="text-base text-[#3B3C4A]">
-								<a
-									href="#"
-									className="cursor-pointer hover:text-[#000000] transition-all hover:underline"
-								>
-									Contact
-								</a>
-							</li>
-						</ul>
-					</div>
-					<div className="px-10">
-						<h3 className="font-bold text-[#181A2A] text-lg">
-							Category
-						</h3>
-						<ul className="flex flex-col justify-start items-start mt-6">
-							<li className="text-base text-[#3B3C4A] mb-2">
-								<a
-									href="#"
-									className="cursor-pointer hover:text-[#000000] transition-all hover:underline"
-								>
-									Lifestyle
-								</a>
-							</li>
-							<li className="text-base text-[#3B3C4A] mb-2">
-								<a
-									href="#"
-									className="cursor-pointer hover:text-[#000000] transition-all hover:underline"
-								>
-									Technology
-								</a>
-							</li>
-							<li className="text-base text-[#3B3C4A] mb-2">
-								<a
-									href="#"
-									className="cursor-pointer hover:text-[#000000] transition-all hover:underline"
-								>
-									Travel
-								</a>
-							</li>
-							<li className="text-base text-[#3B3C4A] mb-2">
-								<a
-									href="#"
-									className="cursor-pointer hover:text-[#000000] transition-all hover:underline"
-								>
-									Business
-								</a>
-							</li>
-							<li className="text-base text-[#3B3C4A] mb-2">
-								<a
-									href="#"
-									className="cursor-pointer hover:text-[#000000] transition-all hover:underline"
-								>
-									Economy
-								</a>
-							</li>
-							<li className="text-base text-[#3B3C4A]">
-								<a
-									href="#"
-									className="cursor-pointer hover:text-[#000000] transition-all hover:underline"
-								>
-									Sports
-								</a>
-							</li>
-						</ul>
-					</div>
 				</div>
 				<div className="w-[328px] bg-white rounded-xl p-8 flex justify-center items-center flex-col">
 					<h2 className="font-bold text-[#181A2A] text-lg">
@@ -177,28 +66,28 @@ export default function Footer() {
 				<nav>
 					<ul className="flex justify-between items-start flex-row">
 						<li className="text-[#3B3C4A] text-base font-normal pr-4">
-							<a
+							<Link
 								href="#"
 								className="cursor-pointer hover:text-[#000000] transition-all hover:underline"
 							>
 								Terms of Use
-							</a>
+							</Link>
 						</li>
 						<li className="text-[#3B3C4A] text-base font-normal px-4 box-border border-x border-x-[#E8E8EA]">
-							<a
+							<Link
 								href="#"
 								className="cursor-pointer hover:text-[#000000] transition-all hover:underline"
 							>
 								Privacy Policy
-							</a>
+							</Link>
 						</li>
 						<li className="text-[#3B3C4A] text-base font-normal pl-4">
-							<a
+							<Link
 								href="#"
 								className="cursor-pointer hover:text-[#000000] transition-all hover:underline"
 							>
 								Cookie Policy
-							</a>
+							</Link>
 						</li>
 					</ul>
 				</nav>

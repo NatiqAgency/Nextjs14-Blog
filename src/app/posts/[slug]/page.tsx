@@ -1,10 +1,11 @@
 import Image from 'next/image'
 import md from 'markdown-it';
-import { prisma } from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 import moment from 'moment';
 import matter from 'gray-matter';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
+import { Author } from '@/components/Post/Author';
 
 type Props = {
 	params: {
@@ -43,22 +44,7 @@ export default async function BlogPage({ params }: Props) {
 				<div className="mb-5 font-semibold text-4xl">
 					{post.title}
 				</div>
-				<div className="flex flex-row items-center text-secondary-400 mb-8">
-					<div className="relative w-9 h-9 rounded-full overflow-hidden">
-						<Image
-							className="object-cover"
-							src={'/images/profile_pic.jpg'}
-							alt="profile_pic"
-							fill
-						/>
-					</div>
-					<div className="ml-2">
-						{post.author.name}
-					</div>
-					<div className='ml-6'>
-						{moment(post.createdAt).toString()}
-					</div>
-				</div>
+				<Author post={post} className='mb-8'/>
 				<div className='relative pt-[50%] rounded-xl bg-secondary-900 overflow-hidden w-full mb-8'>
 					<Image
 						src={'/images/post.jpg'}

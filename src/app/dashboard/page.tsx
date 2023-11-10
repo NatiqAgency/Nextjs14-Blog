@@ -3,7 +3,7 @@ import { MapPosts } from "@/components/Post/MapPosts";
 import prisma from "@/lib/prisma";
 import Image from "next/image";
 
-export default async function Home() {
+export default async function Dashboard() {
 	const posts = await prisma.post.findMany({ include: { author: true, tag: true } })
 
 	return (
