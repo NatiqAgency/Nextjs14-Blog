@@ -2,34 +2,22 @@ import { Author } from "@/components/Post/Author";
 import { MapPosts } from "@/components/Post/MapPosts";
 import prisma from "@/lib/prisma";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function Dashboard() {
 	const posts = await prisma.post.findMany({ include: { author: true, tag: true } })
 
 	return (
 		<main className="flex-1 pt-6">
-			<div className="relative pt-[50%] rounded-xl bg-secondary-900 overflow-hidden">
-				<Image
-					className="object-cover"
-					src={'/images/main.jpg'}
-					alt="main"
-					fill
-				/>
-			</div>
-			<div className="relative bg-white left-16 -top-44 flex flex-col items-start rounded-xl shadow-md p-10 w-[37rem]">
-				<div className="bg-primary py-1 px-2 rounded-md mb-4">
-					{posts[0].tag.title}
-				</div>
-				<div className="mb-6">
-					{posts[0].title}
-				</div>
-				<div className="flex flex-row items-center text-secondary-400">
-					<Author post={posts[0]} />
-				</div>
-			</div>
 			<div className="mb-8">
-				<div className="text-2xl font-bold mb-8">
-					Latest Post
+				<div className="flex flex-row items-center text-2xl font-bold mb-8">
+					My posts
+					<Link
+						href="/dashboard/create"
+						className="py-3 px-5 text-base bg-[#4B6BFB] text-white rounded-md cursor-pointer hover:bg-[#3b56cc] transition-all ml-4"
+					>
+						Create post
+					</Link>
 				</div>
 				<div className={`grid grid-cols-auto-fit gap-5 items-start`}>
 					<MapPosts posts={posts} />

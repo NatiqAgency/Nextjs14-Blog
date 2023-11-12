@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ThemeChanger } from "../Theme";
+import { SignInButton } from "../Buttons/signin";
 
 export default function Header() {
     return (
@@ -23,6 +24,9 @@ export default function Header() {
                 type="text"
                 placeholder="Search"
             />
+            <div className="mx-3">
+                <SignInButton />
+            </div>
             <ThemeChanger />
         </nav>
     )

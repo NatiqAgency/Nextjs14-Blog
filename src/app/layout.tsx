@@ -5,6 +5,7 @@ import '@/styles/global.css'
 import Container from '@/components/Container'
 import { ThemeProvider } from '@/providers/ThemeProvider'
 import Footer from '@/components/Footer'
+import AuthProvider from '@/providers/AuthProvider'
 const work = Work_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,13 +17,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang="en">
 			<body className={`${work.className} bg-white dark:bg-secondary-900`}>
-				<ThemeProvider>
-					<Container>
-						<Header />
-						{children}
-					</Container>
-					<Footer />
-				</ThemeProvider>
+				<AuthProvider>
+					<ThemeProvider>
+						<Container>
+							<Header />
+							{children}
+						</Container>
+						<Footer />
+					</ThemeProvider>
+				</AuthProvider>
 			</body>
 		</html>
 	)

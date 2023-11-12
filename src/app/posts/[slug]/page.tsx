@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import md from 'markdown-it';
 import prisma from '@/lib/prisma';
-import moment from 'moment';
 import matter from 'gray-matter';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
