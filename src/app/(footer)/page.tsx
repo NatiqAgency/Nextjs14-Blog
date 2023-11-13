@@ -1,6 +1,7 @@
 import { Author } from "@/components/Post/Author";
 import { MapPosts } from "@/components/Post/MapPosts";
 import prisma from "@/lib/prisma";
+import { Redirect } from "@/components/Redirect";
 import Image from "next/image";
 
 export default async function Home() {
@@ -16,7 +17,10 @@ export default async function Home() {
 					fill
 				/>
 			</div>
-			<div className="relative bg-white left-16 -top-44 flex flex-col items-start rounded-xl shadow-md p-10 w-[37rem]">
+			<Redirect
+				href={`/posts/${posts[0].slug}`}
+				className="relative bg-white left-16 -top-44 -mb-44 flex flex-col items-start rounded-xl shadow-md p-10 w-[37rem] cursor-pointer"
+			>
 				<div className="bg-primary py-1 px-2 rounded-md mb-4">
 					{posts[0].tag.title}
 				</div>
@@ -26,20 +30,20 @@ export default async function Home() {
 				<div className="flex flex-row items-center text-secondary-400">
 					<Author post={posts[0]} />
 				</div>
-			</div>
-			<div className="mb-8">
-				<div className="text-2xl font-bold mb-8">
+			</Redirect>
+			<div className="mb-8 mt-20">
+				<p className="text-2xl font-bold mb-8">
 					Latest Post
-				</div>
+				</p>
 				<div className={`grid grid-cols-auto-fit gap-5 items-start`}>
 					<MapPosts posts={posts} />
 				</div>
 			</div>
 			<div className="mb-24 flex justify-center">
 				<button className="py-3 px-5 text-secondary-500 border-2 border-secondary-500 rounded-md">
-					View All Post
+					See more
 				</button>
 			</div>
-		</main>
+		</main >
 	)
 }

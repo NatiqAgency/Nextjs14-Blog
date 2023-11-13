@@ -39,7 +39,7 @@ export default async function AuthorPage({ params }: Props) {
 	const posts = await prisma.post.findMany({ where: { author: { slug: params.slug } }, include: { author: true, tag: true } })
 
 	return (
-		<div>
+		<main>
 			<div className="bg-secondary-50 rounded-lg p-12 mb-12">
 				<div className='flex flex-col justify-center items-center px-[25%]'>
 					<div className='flex flex-row gap-4 mb-6'>
@@ -112,6 +112,6 @@ export default async function AuthorPage({ params }: Props) {
 					<MapPosts posts={posts} />
 				</div>
 			</div>
-		</div>
+		</main>
 	)
 }

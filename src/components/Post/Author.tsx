@@ -10,7 +10,7 @@ type Props = {
 
 export const Author = ({ post, className }: Props) => {
     return (
-        <div className={`flex flex-row items-center text-secondary-400 ${className}`}>
+        <div className={`flex flex-row items-center text-secondary-400 ${className && className}`}>
             <div className="relative w-9 h-9 rounded-full overflow-hidden mr-3">
                 <Image
                     className="object-cover"
@@ -19,14 +19,16 @@ export const Author = ({ post, className }: Props) => {
                     fill
                 />
             </div>
-            <Link
-                className="mr-5 font-medium hover:underline"
-                href={`/authors/${post.author.slug}`}
-            >
-                {post.author.name}
-            </Link>
-            <div className="font-normal">
-                {moment(post.createdAt).format('LL')}
+            <div className="flex flex-col">
+                <Link
+                    className="font-medium hover:underline"
+                    href={`/authors/${post.author.slug}`}
+                >
+                    {post.author.name}
+                </Link>
+                <p className="font-normal">
+                    {moment(post.createdAt).utc().format('LL')}
+                </p>
             </div>
         </div>
     )

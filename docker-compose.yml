@@ -9,6 +9,7 @@ services:
         working_dir: /app
         volumes:
             - .:/app
+            - /app/.next
         command: yarn dev
         environment:
             NODE_ENV: development

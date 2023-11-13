@@ -1,3 +1,5 @@
+'use client'
+
 import Image from "next/image";
 import Link from "next/link";
 import { ThemeChanger } from "../Theme";
@@ -24,7 +26,7 @@ export default function Header() {
                 type="text"
                 placeholder="Search"
             />
-            <div className="mx-3">
+            <div className="relative mx-3">
                 <SignInButton />
             </div>
             <ThemeChanger />

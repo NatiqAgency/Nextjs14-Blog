@@ -1,4 +1,5 @@
 "use client";
+
 import { Plus_Jakarta_Sans } from "next/font/google";
 const work = Plus_Jakarta_Sans({ subsets: ["latin"] });
 

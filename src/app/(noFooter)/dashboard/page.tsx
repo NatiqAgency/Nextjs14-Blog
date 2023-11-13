@@ -1,7 +1,6 @@
 import { Author } from "@/components/Post/Author";
 import { MapPosts } from "@/components/Post/MapPosts";
 import prisma from "@/lib/prisma";
-import Image from "next/image";
 import Link from "next/link";
 
 export default async function Dashboard() {
@@ -19,13 +18,13 @@ export default async function Dashboard() {
 						Create post
 					</Link>
 				</div>
-				<div className={`grid grid-cols-auto-fit gap-5 items-start`}>
-					<MapPosts posts={posts} />
+				<div className={`grid grid-flow-row grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-5 items-start`}>
+					<MapPosts posts={posts} edit />
 				</div>
 			</div>
 			<div className="mb-24 flex justify-center">
 				<button className="py-3 px-5 text-secondary-500 border-2 border-secondary-500 rounded-md">
-					View All Post
+					See more
 				</button>
 			</div>
 		</main>

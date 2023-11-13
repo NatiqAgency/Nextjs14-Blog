@@ -35,7 +35,7 @@ export default async function BlogPage({ params }: Props) {
 	const renderedContent = md({ html: true, breaks: true }).render(matterResult.content);
 
 	return (
-		<div className="px-52">
+		<main className="px-52">
 			<div className="bg-white flex flex-col items-start p-10">
 				<div className="bg-primary py-1 px-2 rounded-md mb-4">
 					{post.tag.title}
@@ -57,6 +57,6 @@ export default async function BlogPage({ params }: Props) {
 				>
 				</div>
 			</div>
-		</div>
+		</main>
 	)
 }
