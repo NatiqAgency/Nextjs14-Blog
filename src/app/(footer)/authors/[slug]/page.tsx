@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	if (!author) notFound();
 
 	return {
-		title: author.name,
+		title: `MetaBlog | ${author.name}`,
 	}
 }
 

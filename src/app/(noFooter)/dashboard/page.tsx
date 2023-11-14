@@ -1,10 +1,18 @@
-import { Author } from "@/components/Post/Author";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { MapPosts } from "@/components/Post/MapPosts";
 import prisma from "@/lib/prisma";
+import { Metadata } from "next";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
 
+export const metadata: Metadata = {
+	title: 'Dashboard',
+	description: 'Manage your account and your posts',
+}
+
 export default async function Dashboard() {
-	const posts = await prisma.post.findMany({ include: { author: true, tag: true } })
+	const session = await getServerSession(authOptions)
+	const posts = await prisma.post.findMany({ where: { author: { email: session?.user?.email } }, include: { author: true, tag: true } })
 
 	return (
 		<main className="flex-1 pt-6">

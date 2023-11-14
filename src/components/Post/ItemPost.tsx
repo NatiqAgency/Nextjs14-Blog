@@ -3,23 +3,18 @@
 import { Post, Tag, User } from ".prisma/client"
 import Image from "next/image"
 import { Author } from "./Author"
-import { useRouter } from "next/navigation"
+import Link from "next/link" 
+import { handleDelete } from "@/actions/posts/DeletePost"
 
 type Props = {
     post: Post & { tag: Tag } & { author: User }
     edit?: boolean
+    deleteFnc: (action: any) => void
 }
 
-export const ItemPost = ({ post, edit }: Props) => {
-    const router = useRouter();
-
-    const handleRedirect = (route: string) => {
-        router.push(route);
-    };
-
+export const ItemPost = ({ post, edit, deleteFnc }: Props) => {
     return (
         <div
-            onClick={() => handleRedirect(`/posts/${post.slug}`)}
             className="flex flex-col h-full rounded-xl border-2 border-secondary-100 p-4 hover:shadow-lg transition-all ease-in-out duration-100 cursor-pointer"
         >
             <div className="relative pt-[50%] rounded-md overflow-hidden mb-6">
@@ -40,18 +35,27 @@ export const ItemPost = ({ post, edit }: Props) => {
                 {
                     edit ? (
                         <div className="flex flex-row w-full gap-4">
-                            <p
-                                onClick={() => handleRedirect(`/dashboard/edit/${post.slug}`)}
+                            <Link
+                                href={`/posts/${post.slug}`}
+                                className="flex-1 py-3 px-5 text-secondary-500 border-2 border-secondary-500 rounded-md hover:shadow-lg transition-all ease-in-out duration-100 text-center"
+                            >
+                                See
+                            </Link>
+                            <Link
+                                href={`/dashboard/edit/${post.slug}`}
                                 className="flex-1 py-3 px-5 text-secondary-500 border-2 border-secondary-500 rounded-md hover:shadow-lg transition-all ease-in-out duration-100 text-center"
                             >
                                 Edit
-                            </p>
-                            <p
-                                onClick={() => handleRedirect(`/dashboard/edit/${post.slug}`)}
+                            </Link>
+                            <div
+                                onClick={async () => {
+                                    deleteFnc(post)
+                                    await handleDelete(post.id)
+                                }}
                                 className="flex-1 py-3 px-5 text-secondary-500 border-2 border-secondary-500 rounded-md hover:shadow-lg transition-all ease-in-out duration-100 text-center"
                             >
                                 Delete
-                            </p>
+                            </div>
                         </div>
                     ) : (
                         <div className="flex flex-col items-start">

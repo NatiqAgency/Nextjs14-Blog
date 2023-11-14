@@ -21,11 +21,6 @@ export default function Header() {
                     />
                 </Link>
             </div>
-            <input
-                className="p-2 pl-4 rounded-md bg-secondary-100 placeholder:text-secondary-400"
-                type="text"
-                placeholder="Search"
-            />
             <div className="relative mx-3">
                 <SignInButton />
             </div>

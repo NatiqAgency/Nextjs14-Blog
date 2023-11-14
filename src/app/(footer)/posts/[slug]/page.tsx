@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	}
 
 	return {
-		title: post.title,
+		title: `MetaBlog | ${post.title}`,
 	}
 }
 
