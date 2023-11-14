@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "postinstall": "prisma generate",
     "migrate": "docker compose run --rm frontend yarn prisma migrate dev"
   },
   "dependencies": {
