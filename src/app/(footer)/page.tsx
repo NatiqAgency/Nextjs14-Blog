@@ -44,7 +44,13 @@ export default async function Home() {
 					Latest Post
 				</p>
 				<div className={`grid grid-flow-row grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-5 items-start`}>
-					<MapPosts posts={posts} />
+					{
+						posts.length > 0 ? (
+							<MapPosts posts={posts} />
+						) : (
+							<p>No post yet</p>
+						)
+					}
 				</div>
 			</div>
 			<div className="mb-24 flex justify-center">
