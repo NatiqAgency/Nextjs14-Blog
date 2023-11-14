@@ -1,5 +1,5 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { MapPosts } from "@/components/Post/MapPosts";
+import { authOptions } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { Metadata } from "next";
 import { getServerSession } from "next-auth";

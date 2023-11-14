@@ -5,8 +5,8 @@ import Container from '@/components/Container'
 import { ThemeProvider } from '@/providers/ThemeProvider'
 import SessionProvider from '@/providers/SessionProvider'
 import { getServerSession } from 'next-auth'
-import { authOptions } from '../api/auth/[...nextauth]/route'
 import Footer from '@/components/Footer'
+import { authOptions } from '@/lib/auth'
 
 const work = Work_Sans({ subsets: ["latin"] });
 
