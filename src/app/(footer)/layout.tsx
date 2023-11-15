@@ -10,6 +10,8 @@ import { authOptions } from '@/lib/auth'
 
 const work = Work_Sans({ subsets: ["latin"] });
 
+export const runtime = 'edge'
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
 	const session = await getServerSession(authOptions)
 
