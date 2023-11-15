@@ -8,11 +8,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate && prisma db push",
+    "postbuild": "prisma db push",
     "migrate": "docker compose run --rm frontend yarn prisma migrate dev"
   },
   "dependencies": {
-    "@next-auth/prisma-adapter": "^1.0.7",
+    "@auth/prisma-adapter": "^1.0.6",
     "@prisma/client": "^5.5.2",
     "@types/markdown-it": "^13.0.6",
     "gray-matter": "^4.0.3",
