@@ -4,16 +4,15 @@ import '@/styles/global.css'
 import Container from '@/components/Container'
 import { ThemeProvider } from '@/providers/ThemeProvider'
 import SessionProvider from '@/providers/SessionProvider'
-import { getServerSession } from 'next-auth'
 import Footer from '@/components/Footer'
-import { authOptions } from '@/lib/auth'
+import { auth } from '@/lib/auth'
 
 const work = Work_Sans({ subsets: ["latin"] });
 
 export const runtime = 'edge'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-	const session = await getServerSession(authOptions)
+	const session = await auth()
 
 	return (
 		<html lang="en">

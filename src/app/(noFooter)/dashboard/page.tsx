@@ -1,8 +1,7 @@
 import { MapPosts } from "@/components/Post/MapPosts";
-import { authOptions } from "@/lib/auth";
+import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { Metadata } from "next";
-import { getServerSession } from "next-auth";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -11,7 +10,7 @@ export const metadata: Metadata = {
 }
 
 export default async function Dashboard() {
-	const session = await getServerSession(authOptions)
+	const session = await auth()
 	const posts = await prisma.post.findMany({ where: { author: { email: session?.user?.email } }, include: { author: true, tag: true } })
 
 	return (
