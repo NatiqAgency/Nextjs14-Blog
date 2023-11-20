@@ -16,8 +16,10 @@ export default async function Home() {
 	return (
 		<main className="flex-1 pt-6">
 			{
-				!posts ? (
-					<p>No post yet</p>
+				posts.length === 0 ? (
+					<div className="flex justify-center items-center h-[50vh] -mt-6">
+						<p>No post yet</p>
+					</div>
 				) : (
 					<>
 						<div className="transition-all duration-75 animate-fade">

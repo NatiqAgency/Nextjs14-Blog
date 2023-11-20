@@ -4,6 +4,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useRef, useState, useEffect } from "react";
+import { FaGithub } from "react-icons/fa";
 
 export function SignInButton() {
     const { data: session, status } = useSession();
@@ -23,7 +24,7 @@ export function SignInButton() {
     useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     if (status === 'loading') {
@@ -33,7 +34,7 @@ export function SignInButton() {
     if (status === 'authenticated') {
         return (
             <>
-                <div className="relative h-8 w-8 rounded-full overflow-hidden  cursor-pointer" onClick={toggleDropdown}>
+                <div className="relative h-8 w-8 rounded-full overflow-hidden cursor-pointer" onClick={toggleDropdown}>
                     <Image
                         src={session.user?.image!}
                         alt="Login image"
@@ -50,5 +51,10 @@ export function SignInButton() {
         );
     }
 
-    return <button onClick={() => signIn()}>Sign in</button>;
+    return (
+        <button className="flex justify-center items-center h-8 w-8" onClick={() => signIn('github')}>
+            <FaGithub className="w-full h-full" />
+        </button>
+    )
+
 }
