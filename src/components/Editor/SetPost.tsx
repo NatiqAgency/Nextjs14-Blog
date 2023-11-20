@@ -1,12 +1,13 @@
 'use server'
 
+import { Post, db, users } from "@/lib/db";
 import prisma from "@/lib/prisma";
 import { Session } from "next-auth";
 import { redirect } from "next/navigation";
 import slugify from "slugify";
 
 export default async function createPost(text: string, session: Session | null, postId: string | undefined, formData: FormData) {
-
+    
     const currentUserId = await prisma.user
         .findUnique({ where: { email: session?.user?.email! } })
         .then((user) => user?.id!);

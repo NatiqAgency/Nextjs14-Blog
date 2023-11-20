@@ -1,13 +1,13 @@
 import NextAuth from 'next-auth';
 import Github from 'next-auth/providers/github';
-import prisma from './prisma';
-import { PrismaAdapter } from '@auth/prisma-adapter';
+import { db } from './db/drizzle';
+import { DrizzleAdapter } from '@auth/drizzle-adapter';
 
 export const {
     handlers: { GET, POST },
     auth
 } = NextAuth({
-    adapter: PrismaAdapter(prisma),
+    adapter: DrizzleAdapter(db),
     secret: process.env.NEXTAUTH_SECRET,
     providers: [
         Github({
@@ -22,6 +22,6 @@ export const {
     },
     pages: {
         signIn: '/',
-        newUser: '/',
+        newUser: '/'
     }
 });
