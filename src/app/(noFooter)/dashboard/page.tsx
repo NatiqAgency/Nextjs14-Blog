@@ -1,6 +1,7 @@
 import { MapPosts } from "@/components/Post/MapPosts";
 import { auth } from "@/lib/auth";
-import prisma from "@/lib/prisma";
+import { db } from "@/db";
+import { eq } from "drizzle-orm";
 import { Metadata } from "next";
 import Link from "next/link";
 
@@ -11,7 +12,15 @@ export const metadata: Metadata = {
 
 export default async function Dashboard() {
 	const session = await auth()
-	const posts = await prisma.post.findMany({ where: { author: { email: session?.user?.email } }, include: { author: true, tag: true } })
+
+	const posts = await db.query.posts.findMany({
+		where: (post, { eq }) => eq(post.authorId, session?.user.id!),
+		with: {
+			author: true,
+			tag: true
+		}
+	})
+
 
 	return (
 		<main className="flex-1 pt-6">

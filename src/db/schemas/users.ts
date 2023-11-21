@@ -1,17 +1,24 @@
-import { integer, json, pgTable, primaryKey, serial, text, timestamp } from 'drizzle-orm/pg-core';
-import { relations } from 'drizzle-orm';
+import {
+    timestamp,
+    pgTable,
+    text,
+    primaryKey,
+    integer,
+    json
+} from 'drizzle-orm/pg-core';
 import type { AdapterAccount } from '@auth/core/adapters';
+import { posts } from '.';
+import { relations } from 'drizzle-orm';
 
 export const users = pgTable('user', {
-    id: serial('id').notNull().primaryKey(),
-    name: text('name').notNull(),
-    slug: text('slug').notNull(),
+    id: text('id').notNull().primaryKey(),
+    name: text('name'),
     email: text('email').notNull(),
     emailVerified: timestamp('emailVerified', { mode: 'date' }),
     image: text('image'),
-    job: text('job').notNull(),
+    job: text('job'),
     bio: text('bio'),
-    links: json('links'),
+    links: json('links')
 });
 
 export const accounts = pgTable(
@@ -37,7 +44,7 @@ export const accounts = pgTable(
 );
 
 export const sessions = pgTable('session', {
-    sessionToken: serial('sessionToken').notNull().primaryKey(),
+    sessionToken: text('sessionToken').notNull().primaryKey(),
     userId: text('userId')
         .notNull()
         .references(() => users.id, { onDelete: 'cascade' }),
@@ -56,6 +63,9 @@ export const verificationTokens = pgTable(
     })
 );
 
+export const usersRelations = relations(users, ({ many }) => ({
+    posts: many(posts)
+}));
+
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
-

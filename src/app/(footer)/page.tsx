@@ -1,9 +1,9 @@
 import { Author } from "@/components/Post/Author";
 import { MapPosts } from "@/components/Post/MapPosts";
-import prisma from "@/lib/prisma";
 import { Redirect } from "@/components/Redirect";
 import Image from "next/image";
 import { Metadata } from "next";
+import { db } from "@/db";
 
 export const metadata: Metadata = {
 	title: 'MetaBlog',
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 }
 
 export default async function Home() {
-	const posts = await prisma.post.findMany({ include: { author: true, tag: true } })
+	const posts = await db.query.posts.findMany({ with: { author: true, tag: true } })
 
 	return (
 		<main className="flex-1 pt-6">

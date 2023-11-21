@@ -1,14 +1,14 @@
-import prisma from '@/lib/prisma';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { MapPosts } from '@/components/Post/MapPosts';
+import { db } from '@/db';
 
 type Props = {
 	params: {
-		slug: string
+		id: string
 	}
 }
 
@@ -20,7 +20,7 @@ type Links = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-	const author = await prisma.user.findFirst({ where: { slug: params.slug } })
+	const author = await db.query.users.findFirst({ where: (user, { eq }) => eq(user.id, params.id) })
 
 	if (!author) notFound();
 
@@ -31,12 +31,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function AuthorPage({ params }: Props) {
 
-	const author = await prisma.user.findFirst({ where: { slug: params.slug } })
+	const author = await db.query.users.findFirst({ where: (user, { eq }) => eq(user.id, params.id) })
 	if (!author) notFound()
 
 	const links = author.links as Links;
 
-	const posts = await prisma.post.findMany({ where: { author: { slug: params.slug } }, include: { author: true, tag: true } })
+	const posts = await db.query.posts.findMany({ where: (post, { eq }) => eq(post.authorId, author.id), with: { author: true, tag: true } })
 
 	return (
 		<main>

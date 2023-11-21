@@ -1,4 +1,4 @@
-import { Post, Tag, User } from ".prisma/client"
+import { Post, Tag, User } from "@/db"
 import moment from "moment"
 import Image from "next/image"
 import Link from "next/link"
@@ -9,6 +9,8 @@ type Props = {
 }
 
 export const Author = ({ post, className }: Props) => {
+    if (!post) return null
+
     return (
         <div className={`flex flex-row items-center text-secondary-400 ${className && className}`}>
             <div className="relative w-9 h-9 rounded-full overflow-hidden mr-3">
@@ -22,7 +24,7 @@ export const Author = ({ post, className }: Props) => {
             <div className="flex flex-col">
                 <Link
                     className="font-medium hover:underline"
-                    href={`/authors/${post.author.slug}`}
+                    href={`/authors/${post.author.id}`}
                 >
                     {post.author.name}
                 </Link>

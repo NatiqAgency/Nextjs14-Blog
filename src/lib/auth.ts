@@ -1,6 +1,6 @@
 import NextAuth from 'next-auth';
 import Github from 'next-auth/providers/github';
-import { db } from './db/drizzle';
+import { db } from '../db/drizzle';
 import { DrizzleAdapter } from '@auth/drizzle-adapter';
 
 export const {
@@ -18,6 +18,16 @@ export const {
     callbacks: {
         async redirect({ url, baseUrl }) {
             return url.startsWith(baseUrl) ? url : baseUrl;
+        },
+        async session({ session, token, user }) {
+            session = {
+                ...session,
+                user: {
+                    id: user.id,
+                    ...session.user
+                }
+            };
+            return session;
         }
     },
     pages: {

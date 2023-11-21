@@ -3,7 +3,7 @@ import { relations } from 'drizzle-orm';
 import { posts } from './posts';
 
 export const tags = pgTable('tag', {
-    id: serial('id').primaryKey(),
+    id: text('id').notNull().primaryKey(),
     title: text('title').notNull()
 });
 

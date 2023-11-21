@@ -3,8 +3,8 @@
 import React, { useState } from 'react';
 import { MdEditor } from 'md-editor-rt';
 import 'md-editor-rt/lib/style.css';
-import { Post, Tag } from '@prisma/client';
-import setPost from './SetPost';
+import { Post, Tag } from "@/db"
+import setPost from '../../actions/posts/SetPost';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
@@ -17,7 +17,7 @@ type Props = {
 export default function Editor({ tags, post }: Props) {
     const { data: session } = useSession();
     const [text, setText] = useState(post?.content || '');
-    const actionPost = setPost.bind(null, text, session, post?.id)
+    const actionPost = setPost.bind(null, text, session, post?.id!)
     const router = useRouter();
 
 

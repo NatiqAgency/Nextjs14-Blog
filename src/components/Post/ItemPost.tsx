@@ -1,10 +1,10 @@
 'use client'
 
-import { Post, Tag, User } from ".prisma/client"
 import Image from "next/image"
 import { Author } from "./Author"
 import Link from "next/link" 
 import { handleDelete } from "@/actions/posts/DeletePost"
+import { Post, Tag, User } from "@/db"
 
 type Props = {
     post: Post & { tag: Tag } & { author: User }

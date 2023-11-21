@@ -1,5 +1,5 @@
 import Editor from "@/components/Editor";
-import prisma from "@/lib/prisma";
+import { db } from "@/db";
 
 type Props = {
     params: {
@@ -8,8 +8,14 @@ type Props = {
 }
 
 export default async function EditPostPage({ params }: Props) {
-    const tags = await prisma.tag.findMany()
-    const post = await prisma.post.findFirst({ where: { slug: params.slug }, include: { tag: true } })
+    const tags = await db.query.tags.findMany()
+    const post = await db.query.posts.findFirst({
+        where: (post, { eq }) => eq(post.slug, params.slug),
+        with: {
+            tag: true
+        }
+    }
+    )
 
     return <Editor post={post} tags={tags} />
 };

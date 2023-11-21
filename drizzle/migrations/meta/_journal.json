@@ -1,0 +1,62 @@
+{
+  "version": "5",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1700563844180,
+      "tag": "0000_slippery_sinister_six",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1700564327360,
+      "tag": "0001_whole_firebird",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1700565041619,
+      "tag": "0002_chemical_jasper_sitwell",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1700565812788,
+      "tag": "0003_public_jetstream",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1700574404096,
+      "tag": "0004_foamy_exodus",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1700574512337,
+      "tag": "0005_silly_ken_ellis",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1700574591674,
+      "tag": "0006_spotty_marrow",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1700574632835,
+      "tag": "0007_spicy_dracula",
+      "breakpoints": true
+    }
+  ]
+}

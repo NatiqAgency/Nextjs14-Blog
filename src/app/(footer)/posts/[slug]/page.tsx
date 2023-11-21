@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import md from 'markdown-it';
-import prisma from '@/lib/prisma';
 import matter from 'gray-matter';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { Author } from '@/components/Post/Author';
+import { db } from '@/db';
 
 type Props = {
 	params: {
@@ -13,20 +13,28 @@ type Props = {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-	const post = await prisma.post.findFirst({ where: { slug: params.slug }, include: { author: true, tag: true } })
+	const post = await db.query.posts.findFirst({
+		where: (post, { eq }) => eq(post.slug, params.slug),
+		with: {
+			author: true,
+			tag: true
+		}
+	})
 
-	if (!post) {
-		notFound();
-	}
+	if (!post) notFound();
 
-	return {
-		title: `MetaBlog | ${post.title}`,
-	}
+	return { title: `MetaBlog | ${post.title}` }
 }
 
 export default async function BlogPage({ params }: Props) {
 
-	const post = await prisma.post.findFirst({ where: { slug: params.slug }, include: { author: true, tag: true } })
+	const post = await db.query.posts.findFirst({
+		where: (post, { eq }) => eq(post.slug, params.slug),
+		with: {
+			author: true,
+			tag: true
+		}
+	})
 
 	if (!post) notFound()
 
@@ -43,7 +51,7 @@ export default async function BlogPage({ params }: Props) {
 				<div className="mb-5 font-semibold text-4xl">
 					{post.title}
 				</div>
-				<Author post={post} className='mb-8'/>
+				<Author post={post} className='mb-8' />
 				<div className='relative pt-[50%] rounded-xl bg-secondary-900 overflow-hidden w-full mb-8'>
 					<Image
 						src={'/images/post.jpg'}
